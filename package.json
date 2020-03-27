@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build:prod": "webpack --config webpack.config.prod.js"
   },
   "author": "Arfiz",
   "license": "ISC",
@@ -29,8 +30,10 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "core-js": "^3.6.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "regenerator-runtime": "^0.13.5"
   }
 }
