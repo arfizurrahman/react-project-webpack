@@ -1,20 +1,44 @@
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index.js',
+    mode: "development",
+    entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename:'bundle.js',
-        publicPath: ''
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js",
+        publicPath: ""
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: "cheap-module-eval-source-map",
     module: {
-        rules:[
+        rules: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                loader: "babel-loader",
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    { loader: "style-loader" },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: "[name]_[local]_[hash:base64:5]"
+                            }
+                        }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            ident: "postcss",
+                            plugins: () => [autoprefixer()]
+                        }
+                    }
+                ]
             }
         ]
     }
